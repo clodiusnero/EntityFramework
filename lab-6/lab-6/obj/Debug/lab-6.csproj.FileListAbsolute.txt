@@ -1,0 +1,10 @@
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\lab-6.exe.config
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\lab-6.exe
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\lab-6.pdb
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\EntityFramework.dll
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\EntityFramework.xml
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\obj\Debug\lab-6.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\obj\Debug\lab-6.exe
+c:\users\admin\documents\visual studio 2015\Projects\lab-6\lab-6\obj\Debug\lab-6.pdb

@@ -1,0 +1,10 @@
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\RentMovie.exe.config
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\obj\Debug\RentMovie.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\RentMovie.exe
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\RentMovie.pdb
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\EntityFramework.dll
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\EntityFramework.xml
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\obj\Debug\RentMovie.exe
+C:\Users\admin\Documents\GitHub\entity\RentMovie\RentMovie\obj\Debug\RentMovie.pdb
