@@ -11,90 +11,94 @@ namespace lab_6
     {
         public void SearchStudent()
         {
-                using (var ctx = new ADOschool())
-                {
+            using (var ctx = new ADOschool())
+            {
                 ctx.Configuration.LazyLoadingEnabled = false;
                 Console.Write("Please Enter Name: ");
-                    var userQuery = Console.ReadLine();
-                    var student = ctx.Students.Where(x => x.FirstMidName.StartsWith(userQuery)).FirstOrDefault();
+                var userQuery = Console.ReadLine();
+                var student = ctx.Students.Where(x => x.FirstMidName.StartsWith(userQuery)).FirstOrDefault();
 
-                    if (student != null)
+                if (student != null)
+                {
+
+                    Console.WriteLine($"ID: {student.ID}. Name: {student.FirstMidName} {student.LastName}.");
+                    Console.WriteLine("---------------------------------------------------------------------------");
+
+                    ctx.Entry(student).Collection(x => x.Enrollments).Load();
+                    var recordCount = 0;
+                    foreach (var enrollment in student.Enrollments)
                     {
-
-                        Console.WriteLine($"ID: {student.ID}. Name: {student.FirstMidName} {student.LastName}.");
+                        recordCount++;
+                        Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
                         Console.WriteLine("---------------------------------------------------------------------------");
-
-                        ctx.Entry(student).Collection(x => x.Enrollments).Load();
-                        var recordCount = 0;
-                        foreach (var enrollment in student.Enrollments)
-                        {
-                            recordCount++;
-                            Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
-                            Console.WriteLine("---------------------------------------------------------------------------");
-                        }
                     }
-                    else
-                    {
-                        Console.WriteLine($"\nNo record of your query in the database. Press any key to continue...");
-                    }
-
                 }
-                Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
-                Console.ReadKey();
+                else
+                {
+                    Console.WriteLine($"\nNo record of your query in the database. Press any key to continue...");
+                }
+
+            }
+            Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
+            Console.ReadKey();
         }
 
         public void SearchStudentWithInclude()
         {
-                using (var ctx = new ADOschool())
-                {
+            using (var ctx = new ADOschool())
+            {
                 ctx.Configuration.LazyLoadingEnabled = false;
                 Console.Write("Please Enter Name: ");
-                    var userQuery = Console.ReadLine();
-                    var student = ctx.Students.Include(x => x.Enrollments.Select(y => y.CourseID)).FirstOrDefault();
+                var userQuery = Console.ReadLine();
+                var student = ctx.Students.Include(x => x.Enrollments.Select(y => y.CourseID)).FirstOrDefault();
 
-                    if (student != null)
-                    {
-
-                        Console.WriteLine($"ID: {student.ID}. Name: {student.FirstMidName} {student.LastName}.");
-                        Console.WriteLine("---------------------------------------------------------------------------");
-                        ctx.Entry(student).Collection(x => x.Enrollments).Load();
-                        var recordCount = 0;
-                        foreach (var enrollment in student.Enrollments)
-                        {
-                            recordCount++;
-                            Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
-                            Console.WriteLine("---------------------------------------------------------------------------");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\nNo record of your query in the database. Press any key to continue...");
-                    }
-
-                }
-                Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
-                Console.ReadKey();
-        }
-
-
-        public void PrintStudents()
-        {
-                using (var ctx = new ADOschool())
+                if (student != null)
                 {
-                    var query = from it in ctx.Students
-                                orderby it.ID, it.FirstMidName, it.LastName
-                                select it;
 
-                    var counter = 0;
-                    foreach (Student student in query)
+                    Console.WriteLine($"ID: {student.ID}. Name: {student.FirstMidName} {student.LastName}.");
+                    Console.WriteLine("---------------------------------------------------------------------------");
+                    ctx.Entry(student).Collection(x => x.Enrollments).Load();
+                    var recordCount = 0;
+                    foreach (var enrollment in student.Enrollments)
                     {
-                        counter++;
-                        Console.WriteLine($"{counter}. ID: {student.ID}. Student Name{student.FirstMidName} {student.LastName}\n---------------------------------------------------------------------------");
+                        recordCount++;
+                        Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
+                        Console.WriteLine("---------------------------------------------------------------------------");
                     }
                 }
-                Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
-                Console.ReadKey();
+                else
+                {
+                    Console.WriteLine($"\nNo record of your query in the database. Press any key to continue...");
+                }
+
+            }
+            Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
+            Console.ReadKey();
         }
 
+
+
+        public void SearchStudent()
+        {
+            using (var ctx = new ADOschool())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                Console.Write("Please Enter Name: ");
+                var userQuery = Console.ReadLine();
+                var student = ctx.Students.Where(x => x.FirstMidName.StartsWith(userQuery)).FirstOrDefault();
+
+                if (student != null)
+                {
+
+                    Console.WriteLine("{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
+                    Console.WriteLine("---------------------------------------------------------------------------");
+                }
+
+                else
+                {
+                    Console.WriteLine("\n\nExlplicit loading.\nPress any key to continue...");
+                    Console.ReadKey();
+                }
+            }
+        }
     }
-}

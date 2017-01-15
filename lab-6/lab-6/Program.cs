@@ -12,13 +12,11 @@ namespace lab_6
 
         static void Main(string[] args)
         {
-            var dBinitilizer = new DBinitilizer();
-            dBinitilizer.SeedDb();
+            //var dBinitilizer = new DBinitilizer();
+            //dBinitilizer.SeedDb();
 
             var programInterface = new Interface();
 
-            using (var ctx = new ADOschool())
-            {
                 ConsoleKeyInfo cki;
                 do
                 {
@@ -44,7 +42,7 @@ namespace lab_6
                     }
 
                 } while (cki.Key != ConsoleKey.Escape);               
-            }
+            
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab_6
 {
-    class Helper
+    class Class1
     {
     }
 }

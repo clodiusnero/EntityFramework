@@ -10,7 +10,7 @@ namespace RentMovie
     {
         public void Process()
         {
-            var userTools = new UserTools();
+            var Tools = new Tools();
             var displayDataBase = new DisplayDatabase();
 
             ConsoleKeyInfo cki;
