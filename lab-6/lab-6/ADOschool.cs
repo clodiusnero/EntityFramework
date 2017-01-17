@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.Linq;
 using lab_6.Models;
 
+// Uppgift 1
+
 namespace lab_6
 {
 

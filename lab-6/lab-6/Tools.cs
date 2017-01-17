@@ -9,11 +9,43 @@ namespace lab_6
 {
     class Tools
     {
-        public void SearchStudent()
+        // Uppgift 1 och 3
+        public void PrintStudents()
         {
             using (var ctx = new ADOschool())
             {
+
+                var students = ctx.Students.Include(x => x.Enrollments.Select(c => c));
+
+                var recordCount = 0;
+                var enrollmentCount = 0;
+
+                foreach (var student in students)
+                {
+                    recordCount++;
+                    Console.WriteLine($"{recordCount}. ID: {student.ID}. Name: {student.FirstMidName} {student.LastName}.");
+
+                    foreach (var enrollment in student.Enrollments)
+                    {
+                        enrollmentCount++;
+                        Console.WriteLine($"{enrollmentCount}. Enrollment name: {enrollment.EnrollmentName}  Course name: {enrollment.Course.CourseName} Grade: {enrollment.Grade}");
+                    }
+                    Console.WriteLine("---------------------------------------------------------------------------");
+                }
+
+            }
+        }
+
+
+        // Uppgift 4
+        public void SearchStudentFirstMidName()
+        {
+            using (var ctx = new ADOschool())
+            {
+                // Uppgift 4, Punkt 1
                 ctx.Configuration.LazyLoadingEnabled = false;
+
+                // Uppgift 4, punkt 2
                 Console.Write("Please Enter Name: ");
                 var userQuery = Console.ReadLine();
                 var student = ctx.Students.Where(x => x.FirstMidName.StartsWith(userQuery)).FirstOrDefault();
@@ -24,22 +56,29 @@ namespace lab_6
                     Console.WriteLine($"ID: {student.ID}. Name: {student.FirstMidName} {student.LastName}.");
                     Console.WriteLine("---------------------------------------------------------------------------");
 
+                    // Uppgift 4, punkt 5
                     ctx.Entry(student).Collection(x => x.Enrollments).Load();
+
                     var recordCount = 0;
+
+                    // Uppgift 4, punkt 6
                     foreach (var enrollment in student.Enrollments)
                     {
                         recordCount++;
-                        Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
+
+                        //Uppgift 4, punkt 7
+                        Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.Course.CourseID} Course Name: {enrollment.Course.CourseName} Grade: {enrollment.Grade}");
                         Console.WriteLine("---------------------------------------------------------------------------");
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"\nNo record of your query in the database. Press any key to continue...");
+                    Console.WriteLine("\nNo record of your query in the database. Press any key to continue...");
                 }
 
             }
-            Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
+            // Uppgift 4, punkt 4
+            Console.Write("\n\nUsing Exlplicit loading.\nPress any key to continue...");
             Console.ReadKey();
         }
 
@@ -50,7 +89,9 @@ namespace lab_6
                 ctx.Configuration.LazyLoadingEnabled = false;
                 Console.Write("Please Enter Name: ");
                 var userQuery = Console.ReadLine();
-                var student = ctx.Students.Include(x => x.Enrollments.Select(y => y.CourseID)).FirstOrDefault();
+
+                // Uppgift 4, punkt 3
+                var student = ctx.Students.Where(x => x.FirstMidName.StartsWith(userQuery)).Include(x => x.Enrollments.Select(c => c.Course)).FirstOrDefault();
 
                 if (student != null)
                 {
@@ -62,43 +103,19 @@ namespace lab_6
                     foreach (var enrollment in student.Enrollments)
                     {
                         recordCount++;
-                        Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
+                        Console.WriteLine($"{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.Course.CourseID} Course Name: {enrollment.Course.CourseName} Grade: {enrollment.Grade}");
                         Console.WriteLine("---------------------------------------------------------------------------");
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"\nNo record of your query in the database. Press any key to continue...");
+                    Console.WriteLine("\nNo record of your query in the database. Press any key to continue...");
                 }
 
             }
-            Console.Write($"\n\nExlplicit loading.\nPress any key to continue...");
+            Console.Write("\n\nUsing Exlplicit loading.\nPress any key to continue...");
             Console.ReadKey();
         }
 
-
-
-        public void SearchStudent()
-        {
-            using (var ctx = new ADOschool())
-            {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                Console.Write("Please Enter Name: ");
-                var userQuery = Console.ReadLine();
-                var student = ctx.Students.Where(x => x.FirstMidName.StartsWith(userQuery)).FirstOrDefault();
-
-                if (student != null)
-                {
-
-                    Console.WriteLine("{recordCount}. ID {enrollment.EnrollmentID} Enrollment: {enrollment.EnrollmentName} Course ID: {enrollment.CourseID} Grade: {enrollment.Grade}");
-                    Console.WriteLine("---------------------------------------------------------------------------");
-                }
-
-                else
-                {
-                    Console.WriteLine("\n\nExlplicit loading.\nPress any key to continue...");
-                    Console.ReadKey();
-                }
-            }
         }
     }

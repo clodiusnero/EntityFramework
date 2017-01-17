@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBinitilizer.cs" />
-    <Compile Include="Helper.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="ADOschool.cs" />
     <Compile Include="Models\Course.cs" />

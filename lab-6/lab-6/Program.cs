@@ -12,8 +12,10 @@ namespace lab_6
 
         static void Main(string[] args)
         {
-            //var dBinitilizer = new DBinitilizer();
-            //dBinitilizer.SeedDb();
+            Console.WriteLine("Hej Björn!\n\nDu kanske minns att jag hade problem på praktiska tentan med att skapa och seeda en databas?\n\nDetta program gjordes innan ominstallation och problemet var borta. Det har fungerat.\n\nJag har problem att köra det men du kan se i koden att alla uppgifter är gjorda.\n\nJag har märkt ut dem med kommentarer, kolla klassen Tools.\n\nVidare, mina klasskamrater berättade att de fick tips och hjälp med labben av dig på redovisningsdagen.\n\nKan du se vart skon klämmer?");
+            Console.ReadKey();
+            var dBinitilizer = new DBinitilizer();
+            dBinitilizer.SeedDb();
 
             var programInterface = new Interface();
 
@@ -29,19 +31,26 @@ namespace lab_6
                     switch (choice)
                     {
                         case "1":
-                            tools.SearchStudent();
-                            break;
+                        programInterface.Space();
+                        tools.PrintStudents();
+                        programInterface.PrintCompleted();
+                        break;
 
                         case "2":
-                            tools.SearchStudentWithInclude();
-                            break;
+                        programInterface.Space();
+                        tools.SearchStudentFirstMidName();
+                        programInterface.PrintCompleted();
+                        break;
 
                         case "3":
-                            tools.PrintStudents();
-                            break;
+                        programInterface.Space();
+                        tools.SearchStudentWithInclude();
+                        programInterface.PrintCompleted();
+                        break;
                     }
 
-                } while (cki.Key != ConsoleKey.Escape);               
+                } while (cki.Key != ConsoleKey.Escape);
+
             
         }
     }

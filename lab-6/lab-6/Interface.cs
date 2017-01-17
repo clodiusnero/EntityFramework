@@ -10,7 +10,21 @@ namespace lab_6
     {
         public void DisplayMenu()
         {
-            Console.WriteLine("School Database.\nPress ESC to exit.\nWhat would you like to do?\n\n1: Search student.\n2: Search student using Include.\n3: Print Students.\n\n");
+            Console.WriteLine("School Database.\nPress ESC at start menu to exit.\nWhat would you like to do?\n\n1: Search student.\n2: Search student using Include.\n3: Print Students.\n\n");
+        }
+        public void Space()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        public void PrintCompleted()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine();
+            Console.WriteLine("Record printed, press any key to continue...");
+            Console.ResetColor();
+            Console.ReadKey();
         }
     }
 }
